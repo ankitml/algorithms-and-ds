@@ -126,6 +126,20 @@ def reach_one(n):
 
     return 1 + min(possible_set)
 
+
+def karatsuba_two(a, b):
+    print(a, b)
+    if (a // 10) == 0 and (b//10) == 0:
+        return a * b
+
+    i,k = a // 10, b // 10
+    j, l = a % 10, b % 10
+
+    A = karatsuba_two(i, k)
+    B = karatsuba_two(j, l)
+    C = karatsuba_two(i + j,  k + l) - A - B
+    return 100*A + B + 10*C
+
     
 
 
