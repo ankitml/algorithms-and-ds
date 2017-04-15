@@ -126,21 +126,30 @@ def reach_one(n):
 
     return 1 + min(possible_set)
 
-
-def karatsuba_two(a, b):
-    print(a, b)
-    if (a // 10) == 0 and (b//10) == 0:
+def karatsuba(a, b):
+    """
+    for 26 x 26 length numbers it takes 67 seconds. Very long something is wrong with it. 
+    for 23x23 numbers it takes 8 seconds. For every single increase in length for both numbers time doubles. 
+    To solve for 64x64 it will take more than 557k years to complete. This is shit. Something is terribly wrong
+    """
+    if a < 10 and b < 10:
         return a * b
 
     i,k = a // 10, b // 10
     j, l = a % 10, b % 10
 
-    A = karatsuba_two(i, k)
-    B = karatsuba_two(j, l)
-    C = karatsuba_two(i + j,  k + l) - A - B
+    A = karatsuba(i, k)
+    B = karatsuba(j, l)
+    C = karatsuba(i + j,  k + l) - A - B
     return 100*A + B + 10*C
 
     
+def timeit(a,b):
+    start = time.time()
+    val = karatsuba(a, b)
+    end = time.time()
+    print(end - start)
+    return val
 
 
 
